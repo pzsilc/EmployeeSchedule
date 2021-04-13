@@ -139,6 +139,17 @@ class DateTimeField extends Field
     }
 }
 
+class DateField extends Field
+{
+    public function to_sql(){
+        return "DATE";
+    }
+
+    public function __toString(){
+        return "<input type='date' name='$this->name' $this->attrs/>";
+    }
+}
+
 class ForeignField extends Field
 {
     private $_model = null;

@@ -1,0 +1,14 @@
+<?php $_shouldextend[1]=1; ?>
+<?php $this->startSection('main'); ?>
+ <div id='cover'></div>
+ <div class='p-5' id='login'>
+ <form method='POST' style='width: 90%; max-width: 800px;' class='mx-auto'>
+ <h1>Zaloguj się</h1>
+ <?php echo $csrf; ?>
+
+ <input type='text' name='token' max='8' class='form-control' placeholder='Token'/>
+ <button class='btn btn-primary my-1' style='width: 100%;'>Loguj</button>
+ </form>
+ </div>
+<?php $this->stopSection(); ?>
+<?php if (isset($_shouldextend[1])) { echo $this->runChild('layout'); } ?>

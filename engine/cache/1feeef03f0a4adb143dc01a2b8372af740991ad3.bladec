@@ -1,0 +1,37 @@
+<?php $_shouldextend[1]=1; ?>
+<?php $this->startSection('main'); ?>
+ <div class='mx-auto' style='width: 90%; max-width: 800px; margin-top: 150px;'>
+ <a href='<?php echo \htmlentities($app_path, ENT_QUOTES, 'UTF-8', false); ?>/'><i class='fa fa-arrow-left mb-5 back-arrow'></i></a>
+ <div class='border rounded p-5 mb-5'>
+ <h3>Imię i nazwisko: <b><?php echo \htmlentities($employee['fn'], ENT_QUOTES, 'UTF-8', false); ?> <?php echo \htmlentities($employee['ln'], ENT_QUOTES, 'UTF-8', false); ?></b></h3>
+ <p>Stanowisko: <b><?php echo \htmlentities($employee['statement'], ENT_QUOTES, 'UTF-8', false); ?></b></p>
+ <p>Dział: <b><?php echo \htmlentities($employee['section'], ENT_QUOTES, 'UTF-8', false); ?></b></p>
+ <p>Bezpośredni przełożony: <b><?php echo \htmlentities($employee['manager'], ENT_QUOTES, 'UTF-8', false); ?></b></p>
+ </div>
+ <h4>Harmonogram wdrożeń</h4>
+ <?php if($events): ?>
+ <table class='table table'>
+ <tr>
+ <th>Lp.</th>
+ <th>Data</th>
+ <th>Godzina</th>
+ <th>Temat</th>
+ <th>Osoba prowadząca</th>
+ </tr>
+ <?php $__currentLoopData = $events; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $key => $event): $loop = $this->incrementLoopIndices();  ?>
+ <tr>
+ <td><?php echo \htmlentities($key + 1, ENT_QUOTES, 'UTF-8', false); ?></td>
+ <td><?php echo \htmlentities($event->get_date(), ENT_QUOTES, 'UTF-8', false); ?></td>
+ <td><?php echo \htmlentities($event->get_time(), ENT_QUOTES, 'UTF-8', false); ?></td>
+ <td><?php echo \htmlentities($event->subject, ENT_QUOTES, 'UTF-8', false); ?></td>
+ <td><?php echo \htmlentities($event->get_leader(), ENT_QUOTES, 'UTF-8', false); ?></td>
+ </tr>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ </table>
+ <?php else: ?>
+ <h5 class='text-center mt-5'>Brak wydarzeń</h5>
+ <?php endif; ?>
+ </div>
+<?php $this->stopSection(); ?>
+<?php if (isset($_shouldextend[1])) { echo $this->runChild('layout'); } ?>
